@@ -5,11 +5,13 @@
 <tiles-definitions>
     <definition name="main" template="/WEB-INF/templates/layout/layout.jsp">
         <put-attribute name="title" value="Shop"/>
+        <put-attribute name="css" value="/css/main"/>
         <put-attribute name="header" value="/WEB-INF/templates/fragment/header.jsp"/>
         <put-attribute name="content" value="/WEB-INF/templates/main.jsp"/>
         <put-attribute name="footer" value="/WEB-INF/templates/fragment/footer.jsp"/>
     </definition>
     <definition name="*/*" extends="main">
+        <put-attribute name="css" value="/css/{1}/{2}"/>
         <put-attribute name="content" value="/WEB-INF/templates/{1}/{2}.jsp"/>
     </definition>
 </tiles-definitions>
