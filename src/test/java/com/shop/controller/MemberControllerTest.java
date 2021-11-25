@@ -18,7 +18,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 
 @SpringBootTest
 @AutoConfigureMockMvc
-@Transactional
+@Transactional //각각의 테스트 종료 시 트랜잭션 rollback
 @TestPropertySource(locations = "classpath:application-test.properties")
 class MemberControllerTest {
 

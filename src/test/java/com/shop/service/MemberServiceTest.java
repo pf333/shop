@@ -56,4 +56,5 @@ class MemberServiceTest {
         });
         assertEquals("이미 가입된 회원입니다.", e.getMessage());
     }
+
 }

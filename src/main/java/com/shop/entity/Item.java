@@ -6,14 +6,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity //JPA가 관리할 객체
 @Table(name = "item") //객체와 테이블 매핑
 @Getter
 @Setter
 @ToString
-public class Item {
+public class Item extends BaseEntity {
 
     @Id //기본 키 직접 할당
     @Column(name = "item_id") //필드와 컬럼 매핑
@@ -35,9 +34,5 @@ public class Item {
 
     @Enumerated(EnumType.STRING) //필드의 타입이 enum 타입인 경우 매핑
     private ItemSellStatus itemSellStatus; //상품 판매 상태
-
-    private LocalDateTime regTime; //등록 시간
-
-    private LocalDateTime updateTime; //수정 시간
 
 }

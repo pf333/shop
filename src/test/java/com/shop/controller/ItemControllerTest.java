@@ -14,12 +14,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc //MockMvc를 메모리에 등록
 @TestPropertySource(locations = "classpath:application-test.properties")
 class ItemControllerTest {
 
     @Autowired
-    MockMvc mockMvc;
+    MockMvc mockMvc; //Controller의 주소를 테스트 하기 위한 라이브러리
 
     @Test
     @DisplayName("상품 등록 페이지 권한 테스트")
@@ -38,4 +38,5 @@ class ItemControllerTest {
                 .andDo(print())
                 .andExpect(status().isForbidden());
     }
+
 }
