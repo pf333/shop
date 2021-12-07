@@ -29,7 +29,7 @@
 <script>
     $(document).ready(function(){
         var errorMessage = '${errorMessage}';
-        if(errorMessage != null){
+        if(errorMessage != ''){
             alert(errorMessage);
         }
     });
