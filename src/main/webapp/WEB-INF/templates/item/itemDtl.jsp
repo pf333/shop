@@ -46,7 +46,7 @@
                 <c:when test="${item.itemSellStatus eq 'SELL'}">
                     <div class="text-right">
                         <button class="btn btn-light border border-primary btn-lg" type="button">장바구니 담기</button>
-                        <button class="btn btn-primary btn-lg" type="button">주문하기</button>
+                        <button class="btn btn-primary btn-lg" type="button" onclick="order()">주문하기</button>
                     </div>
                 </c:when>
                 <c:otherwise>
@@ -78,17 +78,55 @@
 <script>
     $(document).ready(function(){
 
-        calculateToalPrice();
+        calculateTotalPrice();
 
-        $("#count").change( function(){
-            calculateToalPrice();
+        $("#count").change(function(){
+            calculateTotalPrice();
         });
     });
 
-    function calculateToalPrice(){
+    function calculateTotalPrice(){
         var count = $("#count").val();
         var price = $("#price").val();
-        var totalPrice = price*count;
+        var totalPrice = price * count;
         $("#totalPrice").html(totalPrice + '원');
+    }
+
+    function order(){
+        var token = $("meta[name='_csrf']").attr("content");
+        var header = $("meta[name='_csrf_header']").attr("content");
+
+        var url = '/order';
+        var paramData = {
+            itemId : $("#itemId").val(),
+            count : $("#count").val()
+        };
+
+        var param = JSON.stringify(paramData);
+
+        $.ajax({
+            url : url,
+            type : 'POST',
+            contentType : 'application/json',
+            data : param,
+            beforeSend : function(xhr){
+                /* 데이터를 전송하기 전에 헤더에 csrf 값을 설정 */
+                xhr.setRequestHeader(header, token);
+            },
+            dataType : 'json',
+            cache : false,
+            success : function(result, status){
+                alert('주문이 완료 되었습니다.');
+                location.href='/';
+            },
+            error : function(jqXHR, status, error){
+                if(jqXHR.status == '401'){
+                    alert('로그인 후 이용해주세요.');
+                    location.href='/member/login';
+                } else{
+                    alert(jqXHR.responseText);
+                }
+            }
+        });
     }
 </script>

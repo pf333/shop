@@ -82,9 +82,9 @@
         var searchBy = $("#searchBy").val();
         var searchQuery = $("#searchQuery").val();
 
-        location.href="/admin/itemMgt/" + page + "?searchDateType=" + searchDateType
-        + "&searchSellStatus=" + searchSellStatus
-        + "&searchBy=" + searchBy
-        + "&searchQuery=" + searchQuery;
+        location.href='/admin/itemMgt/' + page + '?searchDateType=' + searchDateType
+        + '&searchSellStatus=' + searchSellStatus
+        + '&searchBy=' + searchBy
+        + '&searchQuery=' + searchQuery;
     }
 </script>
