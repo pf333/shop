@@ -13,7 +13,7 @@
             <div class="ml-3">
                 <c:choose>
                     <c:when test="${order.orderStatus eq 'ORDER'}">
-                        <button class="btn btn-outline-secondary" type="button" value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
+                        <button class="btn btn-outline-secondary" type="button" value="${order.orderId}" onclick="cancelOrder(this.value)">주문 취소</button>
                     </c:when>
                     <c:otherwise>
                         <h4>(취소 완료)</h4>
@@ -22,20 +22,20 @@
             </div>
         </div>
         <div class="card d-flex">
-            <div class="d-flex mb-3">
-                <c:forEach var="orderItem" items="${order.orderItemDtoList}">
+            <c:forEach var="orderItem" items="${order.orderItemDtoList}">
+                <div class="d-flex mb-3">
                     <div class="repImgDiv">
                         <img class = "rounded repImg" src="${orderItem.imgUrl}" alt="${orderItem.itemNm}">
                     </div>
                     <div class="align-self-center w-75">
                         <span class="fs24 font-weight-bold">${orderItem.itemNm}</span>
+                        <hr/>
                         <div class="fs18 font-weight-light">
-                            <span>${orderItem.orderPrice}원</span>
-                            <span>${orderItem.count}개</span>
+                            <span>주문 금액: ${orderItem.orderPrice}원 * ${orderItem.count}개 = ${orderItem.orderPrice * orderItem.count}원</span>
                         </div>
                     </div>
-                </c:forEach>
-            </div>
+                </div>
+            </c:forEach>
         </div>
 
     </c:forEach>
