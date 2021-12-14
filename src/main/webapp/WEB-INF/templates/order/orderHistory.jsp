@@ -40,8 +40,8 @@
 
     </c:forEach>
 
-    <c:set var="start" value="${(orders.number/maxPage)*maxPage + 1}"/>
-    <c:set var="end" value="${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)}"/>
+    <c:set var="start" value="${orders.number + 1 - orders.number % maxPage}"/>
+    <c:set var="end" value="${orders.totalPages == 0 ? 1 : (start + maxPage - 1 < orders.totalPages ? start + maxPage - 1 : orders.totalPages)}"/>
     <ul class="pagination justify-content-center">
 
         <li class="${orders.number eq 0 ? 'page-item disabled' : 'page-item'}">

@@ -27,8 +27,8 @@
         </tbody>
     </table>
 
-    <c:set var="start" value="${(items.number/maxPage)*maxPage + 1}"/>
-    <c:set var="end" value="${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)}"/>
+    <c:set var="start" value="${items.number + 1 - items.number % maxPage}"/>
+    <c:set var="end" value="${items.totalPages == 0 ? 1 : (start + maxPage - 1 < items.totalPages ? start + maxPage - 1 : items.totalPages)}"/>
     <ul class="pagination justify-content-center">
 
         <li class="${items.first ? 'page-item disabled' : 'page-item'}">
